@@ -31,7 +31,7 @@ const Movies = () => {
       {Object.keys(config).length > 0 && movies?.results ? (
         movies.results.map((movie) => {
           return (
-            <Card>
+            <Card key={movie.id}>
               <Image src={`${config.images.base_url}${config.images.poster_sizes[2]}/${movie.poster_path}`} />
               <CardBody>
                 <Text>{movie.title}</Text>

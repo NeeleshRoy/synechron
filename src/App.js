@@ -7,6 +7,9 @@ import Movies from './components/Movies';
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+import store from './components/store'
+import { Provider } from 'react-redux'
+
 i18n
   .use(initReactI18next)
   .init({
@@ -39,7 +42,8 @@ i18n
 function App() {
   const [isLoggedIn, isLoggedInSet] = useState(false)
   return (
-    <Container>
+    <Provider store={store}>
+      <Container>
         <Routes>
           <Route path='/' element={<Home isLoggedInSet={isLoggedInSet}/>}/>
           <Route element={<Protected isLoggedIn={isLoggedIn} isLoggedInSet={isLoggedInSet}/>}>
@@ -47,6 +51,7 @@ function App() {
           </Route>
         </Routes>
     </Container>
+    </Provider>
   );
 }
 

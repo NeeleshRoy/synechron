@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux'
+import { setEmail, setPassword } from './slices/userSlice'
 import {
   FormControl,
   FormLabel,
@@ -14,10 +16,13 @@ import CookieManager from 'js-cookie';
 import i18n, { changeLanguage } from 'i18next';
 
 const Home = ({ isLoggedInSet }) => {
-  const [email, emailSet] = useState('');
-  const [password, passwordSet] = useState('');
+  const email = useSelector((state) => state.user.email)
+  const password = useSelector((state) => state.user.password)
+  const dispatch = useDispatch()
+
   const [isEmailValidated, isEmailValidatedSet] = useState(false);
   const [isPasswordValidated, isPasswordValidatedSet] = useState(false);
+
   const navigate = useNavigate();
   let { t } = useTranslation();
 
@@ -27,7 +32,7 @@ const Home = ({ isLoggedInSet }) => {
   }
 
   const handleEmail = (e) => {
-    emailSet(e.target.value);
+    dispatch(setEmail(e.target.value))
     const validatedEmail = String(e.target.value)
       .toLowerCase()
       .match(
@@ -41,7 +46,7 @@ const Home = ({ isLoggedInSet }) => {
   };
 
   const handlePassword = (e) => {
-    passwordSet(e.target.value);
+    dispatch(setPassword(e.target.value))
     const validatedPass = String(e.target.value).match(
       /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/
     );
