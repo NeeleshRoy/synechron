@@ -13,14 +13,14 @@ const Movies = () => {
   const [config, configSet] = useState({})
   useEffect(() => {
     fetch(
-      'https://api.themoviedb.org/3/configuration?api_key=16cc70f7d227cb386a0c1630e98fb189'
+      `https://api.themoviedb.org/3/configuration?api_key=${process.env.REACT_APP_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => configSet(data));
   }, []);
   useEffect(() => {
     fetch(
-      'https://api.themoviedb.org/3/movie/popular?api_key=16cc70f7d227cb386a0c1630e98fb189&language=en-US&page=1'
+      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
     )
       .then((res) => res.json())
       .then((data) => moviesSet(data));

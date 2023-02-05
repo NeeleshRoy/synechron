@@ -4,7 +4,37 @@ import { Container } from '@chakra-ui/react';
 import { Route, Routes } from 'react-router-dom'
 import Protected from './components/Protected';
 import Movies from './components/Movies';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
+i18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: {
+          "emailCopy": "Email Address",
+          "passwordCopy": "Password",
+          "email": "We'll never share your email.",
+          "password": "between 8 - 15 characters(Alpha Number with at least one Capital Letter and 1 Special Character)",
+          "submit": "Submit"
+        }
+      },
+      ar: {
+        translation : {
+          "emailCopy": "عنوان البريد الإلكتروني",
+          "passwordCopy": "كلمة المرور",
+          "email": "لن نشارك بريدك الإلكتروني أبدًا",
+          "password": "بين 8-15 حرفًا (رقم ألفا برأس مال واحد على الأقلحرف وحرف خاص واحد)",
+          "submit": "يُقدِّم"
+        }
+      }
+    },
+    fallbackLng: "en",
+    interpolation: {
+      escapeValue: false
+    }
+  });
 
 function App() {
   const [isLoggedIn, isLoggedInSet] = useState(false)
