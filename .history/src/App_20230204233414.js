@@ -5,7 +5,6 @@ import { Route, Routes } from 'react-router-dom'
 import Protected from './components/Protected';
 import Movies from './components/Movies';
 
-
 function App() {
   const [isLoggedIn, isLoggedInSet] = useState(false)
   return (
